@@ -1,15 +1,12 @@
 import { useState } from 'react'
 import {
   Home,
-  Sparkles,
   Users,
   Monitor,
   MessageSquare,
   Bell,
   BarChart2,
   Settings,
-  Gift,
-  Search,
   ChevronDown,
   ChevronRight,
   CreditCard,
@@ -23,18 +20,12 @@ const ACCENT = '#52B788'
 
 const navItems = [
   { icon: Home, label: '홈', active: true },
-  { icon: Sparkles, label: 'AI 인사이트', badge: 'AI' },
   { icon: Users, label: '오디언스' },
   { icon: Monitor, label: '온사이트 캠페인', expandable: true },
   { icon: MessageSquare, label: '메시지 캠페인', expandable: true },
   { icon: Bell, label: '알림 메시지', expandable: true },
   { icon: BarChart2, label: '애널리틱스', expandable: true },
   { icon: Settings, label: '설정' },
-]
-
-const addons = [
-  { icon: Gift, label: '상품 추천 위젯' },
-  { icon: Search, label: '숨은 상품 찾기' },
 ]
 
 export default function Sidebar() {
@@ -138,35 +129,6 @@ export default function Sidebar() {
                 ? <ChevronDown size={13} color="#9AADA2" />
                 : <ChevronRight size={13} color="#9AADA2" />
             )}
-          </button>
-        ))}
-
-        <p style={{ fontSize: 10, fontWeight: 600, color: '#9AADA2', padding: '12px 8px 4px', letterSpacing: 0.5, textTransform: 'uppercase' }}>Add-on</p>
-        {addons.map(({ icon: Icon, label }) => (
-          <button
-            key={label}
-            style={{
-              width: '100%',
-              display: 'flex',
-              alignItems: 'center',
-              gap: 9,
-              padding: '8px 10px',
-              borderRadius: 7,
-              border: 'none',
-              cursor: 'pointer',
-              background: 'transparent',
-              color: '#3D5248',
-              fontSize: 13,
-              fontWeight: 400,
-              textAlign: 'left',
-              transition: 'background 0.15s',
-              marginBottom: 1,
-            }}
-            onMouseEnter={e => { e.currentTarget.style.background = '#F4F6F5' }}
-            onMouseLeave={e => { e.currentTarget.style.background = 'transparent' }}
-          >
-            <Icon size={15} strokeWidth={1.8} />
-            <span>{label}</span>
           </button>
         ))}
       </nav>
