@@ -8,8 +8,7 @@ import {
   Settings,
   ChevronDown,
   ChevronRight,
-  User,
-  MoreHorizontal,
+  ArrowLeftRight,
 } from 'lucide-react'
 
 const PRIMARY = '#1B4332'
@@ -17,9 +16,9 @@ const PRIMARY = '#1B4332'
 const navItems = [
   { icon: Home, label: '홈', active: true },
   { icon: Users, label: '오디언스' },
-  { icon: Monitor, label: '온사이트 캠페인', expandable: true },
-  { icon: MessageSquare, label: '메시지 캠페인', expandable: true },
-  { icon: BarChart2, label: '애널리틱스', expandable: true },
+  { icon: Monitor, label: '온사이트 캠페인', expandable: true, children: ['온사이트 현황', '온사이트 목록', '온사이트 통계'] },
+  { icon: MessageSquare, label: '메시지 캠페인', expandable: true, children: ['메시지 현황', '메시지 목록', '메시지 통계'] },
+  { icon: BarChart2, label: '애널리틱스' },
   { icon: Settings, label: '설정' },
 ]
 
@@ -63,44 +62,71 @@ export default function Sidebar() {
       {/* Navigation */}
       <nav style={{ padding: '4px 8px', flex: 1 }}>
         <p style={{ fontSize: 10, fontWeight: 600, color: '#9AADA2', padding: '8px 8px 4px', letterSpacing: 0.5, textTransform: 'uppercase' }}>Menu</p>
-        {navItems.map(({ icon: Icon, label, active, expandable }) => (
-          <button
-            key={label}
-            onClick={() => expandable && toggle(label)}
-            style={{
-              width: '100%',
-              display: 'flex',
-              alignItems: 'center',
-              gap: 9,
-              padding: '8px 10px',
-              borderRadius: 7,
-              border: 'none',
-              cursor: 'pointer',
-              background: active ? `${PRIMARY}0F` : 'transparent',
-              color: active ? PRIMARY : '#3D5248',
-              fontSize: 13,
-              fontWeight: active ? 600 : 400,
-              textAlign: 'left',
-              transition: 'background 0.15s',
-              marginBottom: 1,
-            }}
-            onMouseEnter={e => { if (!active) e.currentTarget.style.background = '#F5F7F6' }}
-            onMouseLeave={e => { if (!active) e.currentTarget.style.background = 'transparent' }}
-          >
-            <Icon size={15} strokeWidth={active ? 2.2 : 1.8} />
-            <span style={{ flex: 1 }}>{label}</span>
-            {expandable && (
-              expanded[label]
-                ? <ChevronDown size={13} color="#9AADA2" />
-                : <ChevronRight size={13} color="#9AADA2" />
+        {navItems.map(({ icon: Icon, label, active, expandable, children }) => (
+          <div key={label}>
+            <button
+              onClick={() => expandable && toggle(label)}
+              style={{
+                width: '100%',
+                display: 'flex',
+                alignItems: 'center',
+                gap: 9,
+                padding: '8px 10px',
+                borderRadius: 7,
+                border: 'none',
+                cursor: 'pointer',
+                background: active ? `${PRIMARY}0F` : 'transparent',
+                color: active ? PRIMARY : '#3D5248',
+                fontSize: 13,
+                fontWeight: active ? 600 : 400,
+                textAlign: 'left',
+                transition: 'background 0.15s',
+                marginBottom: 1,
+              }}
+              onMouseEnter={e => { if (!active) e.currentTarget.style.background = '#F5F7F6' }}
+              onMouseLeave={e => { if (!active) e.currentTarget.style.background = 'transparent' }}
+            >
+              <Icon size={15} strokeWidth={active ? 2.2 : 1.8} />
+              <span style={{ flex: 1 }}>{label}</span>
+              {expandable && (
+                expanded[label]
+                  ? <ChevronDown size={13} color="#9AADA2" />
+                  : <ChevronRight size={13} color="#9AADA2" />
+              )}
+            </button>
+
+            {expandable && expanded[label] && (
+              <div style={{ marginBottom: 2 }}>
+                {children.map(child => (
+                  <button
+                    key={child}
+                    style={{
+                      width: '100%',
+                      display: 'block',
+                      padding: '7px 10px 7px 34px',
+                      borderRadius: 7,
+                      border: 'none',
+                      cursor: 'pointer',
+                      background: 'transparent',
+                      color: '#7A8A80',
+                      fontSize: 12.5,
+                      textAlign: 'left',
+                      transition: 'background 0.15s',
+                    }}
+                    onMouseEnter={e => { e.currentTarget.style.background = '#F5F7F6' }}
+                    onMouseLeave={e => { e.currentTarget.style.background = 'transparent' }}
+                  >
+                    {child}
+                  </button>
+                ))}
+              </div>
             )}
-          </button>
+          </div>
         ))}
       </nav>
 
-      {/* Bottom */}
-      <div style={{ borderTop: '1px solid #F0F3F1', padding: '10px 8px' }}>
-        {/* Brand selector */}
+      {/* Bottom — brand switcher */}
+      <div style={{ borderTop: '1px solid #F0F3F1', padding: '12px 12px' }}>
         <button style={{
           width: '100%',
           display: 'flex',
@@ -109,50 +135,24 @@ export default function Sidebar() {
           background: '#fff',
           border: '1px solid #E4E9E6',
           borderRadius: 8,
-          padding: '8px 11px',
+          padding: '9px 12px',
           cursor: 'pointer',
-          fontSize: 13,
-          color: '#1a2e22',
-          fontWeight: 600,
-          marginBottom: 8,
           transition: 'border-color 0.15s',
         }}
           onMouseEnter={e => { e.currentTarget.style.borderColor = '#C9D4CD' }}
           onMouseLeave={e => { e.currentTarget.style.borderColor = '#E4E9E6' }}
         >
-          <span>bttr</span>
-          <ChevronDown size={14} color="#9AADA2" />
-        </button>
-
-        {/* User */}
-        <div style={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: 8,
-          padding: '6px 10px',
-          borderRadius: 7,
-          cursor: 'pointer',
-        }}
-          onMouseEnter={e => { e.currentTarget.style.background = '#F5F7F6' }}
-          onMouseLeave={e => { e.currentTarget.style.background = 'transparent' }}
-        >
-          <div style={{
-            width: 26,
-            height: 26,
-            borderRadius: '50%',
-            background: '#F0F3F1',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            flexShrink: 0,
-          }}>
-            <User size={13} color="#5A6B61" />
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <div style={{
+              width: 24, height: 24, borderRadius: 6, background: PRIMARY,
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+            }}>
+              <span style={{ color: '#fff', fontWeight: 700, fontSize: 12 }}>B</span>
+            </div>
+            <span style={{ fontSize: 13, fontWeight: 700, color: '#1a2e22' }}>bttr</span>
           </div>
-          <span style={{ fontSize: 11, color: '#5A6B61', flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-            sytak707@gmail.com
-          </span>
-          <MoreHorizontal size={13} color="#9AADA2" />
-        </div>
+          <ArrowLeftRight size={15} color="#9AADA2" />
+        </button>
       </div>
     </aside>
   )
