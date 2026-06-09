@@ -11,6 +11,13 @@ body {
   background: #F5F8F6;
 }
 
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+.spin {
+  animation: spin 0.9s linear infinite;
+}
+
 #root {
   width: 100%;
   min-height: 100vh;

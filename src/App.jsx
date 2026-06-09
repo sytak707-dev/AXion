@@ -14,16 +14,17 @@ import MessageStatus from './components/MessageStatus'
 import MessageStats from './components/MessageStats'
 import Customers from './components/Customers'
 import Settings from './components/Settings'
+import AudienceCreate from './components/AudienceCreate'
+import AudienceManage from './components/AudienceManage'
 import { c } from './theme'
 
-const placeholderTitles = {
-  'audience-create': '오디언스 생성',
-  'audience-manage': '오디언스 관리',
-}
+const placeholderTitles = {}
 
 function renderRoute(route) {
   switch (route) {
     case 'home': return <Dashboard />
+    case 'audience-create': return <AudienceCreate />
+    case 'audience-manage': return <AudienceManage />
     case 'analytics-kpi': return <KpiPage />
     case 'analytics-funnel': return <FunnelPage />
     case 'analytics-churn': return <ChurnPage />

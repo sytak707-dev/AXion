@@ -70,16 +70,24 @@ export default function Sidebar({ route, onNavigate }) {
           filter: 'blur(6px)',
           pointerEvents: 'none',
         }} />
-        <span style={{
-          position: 'relative',
-          display: 'inline-flex',
-          alignItems: 'baseline',
-          letterSpacing: -0.5,
-          textShadow: '0 0 10px rgba(255,255,255,0.95), 0 0 18px rgba(255,255,255,0.8)',
-        }}>
-          <span style={{ fontWeight: 800, fontSize: 24, color: c.primary }}>AX</span>
+        <button
+          onClick={() => onNavigate('home')}
+          aria-label="홈으로 이동"
+          style={{
+            position: 'relative',
+            display: 'inline-flex',
+            alignItems: 'baseline',
+            letterSpacing: -0.5,
+            textShadow: '0 0 10px rgba(255,255,255,0.95), 0 0 18px rgba(255,255,255,0.8)',
+            background: 'transparent',
+            border: 'none',
+            padding: 0,
+            cursor: 'pointer',
+          }}
+        >
+          <span style={{ fontWeight: 800, fontSize: 24, color: c.primaryDark }}>AX</span>
           <span style={{ fontWeight: 700, fontSize: 19, color: '#000' }}>ion</span>
-        </span>
+        </button>
       </div>
 
       {/* Navigation */}
