@@ -8,7 +8,7 @@ export const c = {
 
   // data / chart
   green: '#0F6E51',
-  amber: '#F2B544',
+  amber: '#B6F034', // 재방문 — 명도 높은 형광 연두
   track: '#EEF3F0',
 
   // text
@@ -24,8 +24,8 @@ export const c = {
   borderStrong: '#D8E1DB',
 
   // status
-  up: '#0F9D6B',
-  down: '#E0835C',
+  up: '#E5392F',   // 증가 ▲ — 빨간색
+  down: '#2F73E0', // 감소 ▼ — 파란색
 }
 
 export const shadow = {
