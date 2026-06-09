@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { ChevronDown } from 'lucide-react'
-
-const PRIMARY = '#1B4332'
+import { c, shadow } from '../theme'
 
 const statusCounts = [
   { label: '대기', count: 0 },
@@ -33,24 +32,24 @@ export default function SendStatus() {
 
   return (
     <section style={{ marginBottom: 32 }}>
-      <h2 style={{ fontSize: 16, fontWeight: 700, color: '#1B2B22', marginBottom: 14 }}>발송현황</h2>
+      <h2 style={{ fontSize: 16, fontWeight: 700, color: c.ink, marginBottom: 14 }}>발송현황</h2>
 
       {/* Status counts */}
       <div style={{ display: 'flex', gap: 28, marginBottom: 16 }}>
         {statusCounts.map(({ label, count }) => (
           <div key={label} style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-            <span style={{ fontSize: 13, color: '#5A6B61', fontWeight: 500 }}>{label}</span>
+            <span style={{ fontSize: 13, color: c.body, fontWeight: 500 }}>{label}</span>
             <span style={{
               fontSize: 16,
               fontWeight: 800,
-              color: count > 0 ? '#1B2B22' : '#CDD6D1',
+              color: count > 0 ? c.ink : '#CDD6D1',
             }}>{count}</span>
           </div>
         ))}
       </div>
 
       {/* Channel tabs */}
-      <div style={{ display: 'flex', gap: 8, marginBottom: 0 }}>
+      <div style={{ display: 'flex', gap: 8, position: 'relative', zIndex: 1 }}>
         {channels.map(ch => {
           const isActive = ch === active
           return (
@@ -58,19 +57,21 @@ export default function SendStatus() {
               key={ch}
               onClick={() => setActive(ch)}
               style={{
-                padding: '8px 18px',
-                borderRadius: '8px 8px 0 0',
-                border: '1px solid #ECEFED',
-                borderBottom: isActive ? '1px solid #fff' : '1px solid #ECEFED',
-                background: isActive ? '#fff' : '#F4F6F5',
-                color: isActive ? PRIMARY : '#7A8A80',
+                padding: '9px 20px',
+                borderRadius: '10px 10px 0 0',
+                border: `1px solid ${isActive ? c.border : 'transparent'}`,
+                borderBottom: isActive ? `1px solid ${c.card}` : '1px solid transparent',
+                background: isActive ? c.card : 'transparent',
+                color: isActive ? c.primary : c.muted,
                 fontSize: 13,
                 fontWeight: isActive ? 700 : 500,
                 cursor: 'pointer',
-                position: 'relative',
                 marginBottom: -1,
-                transition: 'all 0.12s',
+                boxShadow: isActive ? shadow.tab : 'none',
+                transition: 'all 0.15s',
               }}
+              onMouseEnter={e => { if (!isActive) e.currentTarget.style.color = c.body }}
+              onMouseLeave={e => { if (!isActive) e.currentTarget.style.color = c.muted }}
             >
               {ch}
             </button>
@@ -80,14 +81,16 @@ export default function SendStatus() {
 
       {/* Table */}
       <div style={{
-        background: '#fff',
-        border: '1px solid #ECEFED',
-        borderRadius: '0 10px 10px 10px',
+        background: c.card,
+        border: `1px solid ${c.border}`,
+        borderRadius: '0 14px 14px 14px',
         overflow: 'hidden',
+        boxShadow: shadow.card,
+        position: 'relative',
       }}>
         <table style={{ width: '100%', borderCollapse: 'collapse' }}>
           <thead>
-            <tr style={{ borderBottom: '1px solid #F0F3F1' }}>
+            <tr style={{ borderBottom: `1px solid ${c.border}` }}>
               {[
                 { label: '캠페인 이름', align: 'left' },
                 { label: '발송 시작', align: 'left' },
@@ -99,7 +102,7 @@ export default function SendStatus() {
                   textAlign: col.align,
                   fontSize: 11,
                   fontWeight: 600,
-                  color: '#A7B2AB',
+                  color: c.muted,
                   whiteSpace: 'nowrap',
                 }}>{col.label}</th>
               ))}
@@ -108,30 +111,30 @@ export default function SendStatus() {
           <tbody>
             {rows.length === 0 ? (
               <tr>
-                <td colSpan={4} style={{ padding: '40px 16px', textAlign: 'center', fontSize: 13, color: '#A7B2AB' }}>
+                <td colSpan={4} style={{ padding: '40px 16px', textAlign: 'center', fontSize: 13, color: c.muted }}>
                   발송 중인 캠페인이 없습니다.
                 </td>
               </tr>
             ) : rows.map((row, idx) => (
               <tr key={idx} style={{
-                borderBottom: idx < rows.length - 1 ? '1px solid #F4F6F5' : 'none',
-                transition: 'background 0.1s',
+                borderBottom: idx < rows.length - 1 ? `1px solid ${c.bg}` : 'none',
+                transition: 'background 0.12s',
               }}
-                onMouseEnter={e => e.currentTarget.style.background = '#FAFBFB'}
+                onMouseEnter={e => e.currentTarget.style.background = c.bg}
                 onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
               >
-                <td style={{ padding: '13px 16px', fontSize: 12, color: '#2E3D34', maxWidth: 280 }}>
+                <td style={{ padding: '13px 16px', fontSize: 12, color: c.ink, maxWidth: 280 }}>
                   <span style={{ display: '-webkit-box', WebkitLineClamp: 1, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
                     {row.name}
                   </span>
                 </td>
-                <td style={{ padding: '13px 16px', fontSize: 12, color: '#7A8A80', whiteSpace: 'nowrap' }}>
+                <td style={{ padding: '13px 16px', fontSize: 12, color: c.muted, whiteSpace: 'nowrap' }}>
                   {row.start}
                 </td>
-                <td style={{ padding: '13px 16px', textAlign: 'right', fontSize: 12, fontWeight: 600, color: '#2E3D34', whiteSpace: 'nowrap' }}>
+                <td style={{ padding: '13px 16px', textAlign: 'right', fontSize: 12, fontWeight: 600, color: c.ink, whiteSpace: 'nowrap' }}>
                   {row.targets.toLocaleString()}
                 </td>
-                <td style={{ padding: '13px 16px', fontSize: 12, color: '#97A39C', maxWidth: 320 }}>
+                <td style={{ padding: '13px 16px', fontSize: 12, color: c.muted, maxWidth: 320 }}>
                   <span style={{ display: '-webkit-box', WebkitLineClamp: 1, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
                     {row.detail}
                   </span>
@@ -142,7 +145,7 @@ export default function SendStatus() {
         </table>
 
         {rows.length > 0 && (
-          <div style={{ textAlign: 'center', padding: '10px', borderTop: '1px solid #F0F3F1' }}>
+          <div style={{ textAlign: 'center', padding: '10px', borderTop: `1px solid ${c.border}` }}>
             <button style={{
               display: 'inline-flex',
               alignItems: 'center',
@@ -150,13 +153,13 @@ export default function SendStatus() {
               background: 'transparent',
               border: 'none',
               fontSize: 12,
-              color: '#5A6B61',
+              color: c.body,
               fontWeight: 600,
               cursor: 'pointer',
               padding: '4px 12px',
-              borderRadius: 6,
+              borderRadius: 8,
             }}
-              onMouseEnter={e => e.currentTarget.style.background = '#F5F7F6'}
+              onMouseEnter={e => e.currentTarget.style.background = c.bg}
               onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
             >
               더보기 <ChevronDown size={13} />
