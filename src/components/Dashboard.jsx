@@ -36,7 +36,7 @@ export default function Dashboard() {
       </div>
 
       {/* Title */}
-      <h1 style={{ fontSize: 26, fontWeight: 800, color: c.ink, letterSpacing: -0.6, marginBottom: 22 }}>
+      <h1 style={{ fontSize: 26, fontWeight: 400, color: c.ink, letterSpacing: -0.6, marginBottom: 22 }}>
         OOO님, 오늘의 성과를 확인해보세요.
       </h1>
 

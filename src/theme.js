@@ -1,16 +1,16 @@
 // 공용 디자인 토큰 — 세련된 에메랄드 기반 팔레트
 export const c = {
   // brand
-  primary: '#0F6E51',
-  primaryDark: '#0A4D38',
+  primary: '#0F7C5A',
+  primaryDark: '#0A5840',
   primarySoft: '#E8F3ED',
   accent: '#10B981',
 
   // data / chart
-  green: '#0F6E51',
-  amber: '#D2E07A', // 재방문/재구매 — 채도 낮춘 연두
-  lime: '#D2E07A',  // 밝은 연두 (CTA 버튼)
-  limeDark: '#C3D26A',
+  green: '#0F7C5A',
+  amber: '#D3E86A', // 재방문/재구매 — 연두
+  lime: '#D3E86A',  // 밝은 연두 (CTA 버튼)
+  limeDark: '#C5DC5C',
   track: '#EEF3F0',
 
   // text
