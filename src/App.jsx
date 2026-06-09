@@ -13,12 +13,12 @@ import OnsiteStats from './components/OnsiteStats'
 import MessageStatus from './components/MessageStatus'
 import MessageStats from './components/MessageStats'
 import Customers from './components/Customers'
+import Settings from './components/Settings'
 import { c } from './theme'
 
 const placeholderTitles = {
   'audience-create': '오디언스 생성',
   'audience-manage': '오디언스 관리',
-  'settings': '설정',
 }
 
 function renderRoute(route) {
@@ -34,6 +34,7 @@ function renderRoute(route) {
     case 'message-status': return <MessageStatus />
     case 'message-stats': return <MessageStats />
     case 'customers': return <Customers />
+    case 'settings': return <Settings />
     default: return <Placeholder title={placeholderTitles[route] || '페이지'} />
   }
 }
