@@ -14,16 +14,31 @@ import {
 import { c, shadow } from '../theme'
 
 const navItems = [
-  { icon: Home, label: '홈', active: true },
-  { icon: Users, label: '오디언스', expandable: true, children: ['오디언스 생성', '오디언스 관리'] },
-  { icon: Monitor, label: '온사이트 캠페인', expandable: true, children: ['온사이트 현황', '온사이트 통계'] },
-  { icon: MessageSquare, label: '메시지 캠페인', expandable: true, children: ['메시지 현황', '메시지 통계'] },
-  { icon: BarChart2, label: '애널리틱스', expandable: true, children: ['KPI', '퍼널', '이탈 고객 분석', '코호트', '세그먼트'] },
-  { icon: List, label: '고객 목록' },
-  { icon: Settings, label: '설정' },
+  { icon: Home, label: '홈', route: 'home' },
+  { icon: Users, label: '오디언스', expandable: true, children: [
+    { label: '오디언스 생성', route: 'audience-create' },
+    { label: '오디언스 관리', route: 'audience-manage' },
+  ] },
+  { icon: Monitor, label: '온사이트 캠페인', expandable: true, children: [
+    { label: '온사이트 현황', route: 'onsite-status' },
+    { label: '온사이트 통계', route: 'onsite-stats' },
+  ] },
+  { icon: MessageSquare, label: '메시지 캠페인', expandable: true, children: [
+    { label: '메시지 현황', route: 'message-status' },
+    { label: '메시지 통계', route: 'message-stats' },
+  ] },
+  { icon: BarChart2, label: '애널리틱스', expandable: true, children: [
+    { label: 'KPI', route: 'analytics-kpi' },
+    { label: '퍼널', route: 'analytics-funnel' },
+    { label: '이탈 고객 분석', route: 'analytics-churn' },
+    { label: '코호트', route: 'analytics-cohort' },
+    { label: '세그먼트', route: 'analytics-segment' },
+  ] },
+  { icon: List, label: '고객 목록', route: 'customers' },
+  { icon: Settings, label: '설정', route: 'settings' },
 ]
 
-export default function Sidebar() {
+export default function Sidebar({ route, onNavigate }) {
   const [expanded, setExpanded] = useState({})
 
   const toggle = (label) => setExpanded(prev => ({ ...prev, [label]: !prev[label] }))
@@ -70,10 +85,13 @@ export default function Sidebar() {
       {/* Navigation */}
       <nav style={{ padding: '4px 8px', flex: 1 }}>
         <p style={{ fontSize: 10, fontWeight: 600, color: c.faint, padding: '8px 8px 4px', letterSpacing: 0.5, textTransform: 'uppercase' }}>Menu</p>
-        {navItems.map(({ icon: Icon, label, active, expandable, children }) => (
+        {navItems.map(({ icon: Icon, label, route: itemRoute, expandable, children }) => {
+          const childActive = expandable && children.some(ch => ch.route === route)
+          const active = itemRoute === route || childActive
+          return (
           <div key={label}>
             <button
-              onClick={() => expandable && toggle(label)}
+              onClick={() => expandable ? toggle(label) : onNavigate(itemRoute)}
               style={{
                 width: '100%',
                 display: 'flex',
@@ -105,9 +123,12 @@ export default function Sidebar() {
 
             {expandable && expanded[label] && (
               <div style={{ marginBottom: 2 }}>
-                {children.map(child => (
+                {children.map(child => {
+                  const isActive = child.route === route
+                  return (
                   <button
-                    key={child}
+                    key={child.route}
+                    onClick={() => onNavigate(child.route)}
                     style={{
                       width: '100%',
                       display: 'block',
@@ -115,22 +136,25 @@ export default function Sidebar() {
                       borderRadius: 9,
                       border: 'none',
                       cursor: 'pointer',
-                      background: 'transparent',
-                      color: c.muted,
+                      background: isActive ? c.primarySoft : 'transparent',
+                      color: isActive ? c.primary : c.muted,
                       fontSize: 12.5,
+                      fontWeight: isActive ? 600 : 400,
                       textAlign: 'left',
                       transition: 'background 0.15s, color 0.15s',
                     }}
-                    onMouseEnter={e => { e.currentTarget.style.background = c.card; e.currentTarget.style.color = c.body }}
-                    onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = c.muted }}
+                    onMouseEnter={e => { if (!isActive) { e.currentTarget.style.background = c.card; e.currentTarget.style.color = c.body } }}
+                    onMouseLeave={e => { if (!isActive) { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = c.muted } }}
                   >
-                    {child}
+                    {child.label}
                   </button>
-                ))}
+                  )
+                })}
               </div>
             )}
           </div>
-        ))}
+          )
+        })}
       </nav>
 
       {/* Bottom — brand switcher */}
