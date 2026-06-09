@@ -12,7 +12,11 @@ function Trend({ value, positive }) {
 function SplitBar({ greenPct }) {
   return (
     <div style={{ display: 'flex', height: 8, borderRadius: 99, overflow: 'hidden', background: c.track }}>
-      <div style={{ width: `${greenPct}%`, background: c.green }} />
+      <div style={{
+        width: `${greenPct}%`,
+        background: c.green,
+        backgroundImage: 'repeating-linear-gradient(45deg, rgba(255,255,255,0.6) 0, rgba(255,255,255,0.6) 2px, transparent 2px, transparent 6px)',
+      }} />
       <div style={{ flex: 1, background: c.amber }} />
     </div>
   )

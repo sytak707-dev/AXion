@@ -6,6 +6,7 @@ import {
   MessageSquare,
   BarChart2,
   Settings,
+  List,
   ChevronDown,
   ChevronRight,
   ArrowLeftRight,
@@ -14,10 +15,11 @@ import { c, shadow } from '../theme'
 
 const navItems = [
   { icon: Home, label: '홈', active: true },
-  { icon: Users, label: '오디언스' },
-  { icon: Monitor, label: '온사이트 캠페인', expandable: true, children: ['온사이트 목록', '온사이트 통계'] },
-  { icon: MessageSquare, label: '메시지 캠페인', expandable: true, children: ['메시지 목록', '메시지 통계'] },
-  { icon: BarChart2, label: '애널리틱스' },
+  { icon: Users, label: '오디언스', expandable: true, children: ['오디언스 생성', '오디언스 관리'] },
+  { icon: Monitor, label: '온사이트 캠페인', expandable: true, children: ['온사이트 현황', '온사이트 통계'] },
+  { icon: MessageSquare, label: '메시지 캠페인', expandable: true, children: ['메시지 현황', '메시지 통계'] },
+  { icon: BarChart2, label: '애널리틱스', expandable: true, children: ['KPI', '퍼널', '이탈 고객 분석', '코호트', '세그먼트'] },
+  { icon: List, label: '고객 목록' },
   { icon: Settings, label: '설정' },
 ]
 
