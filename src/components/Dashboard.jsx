@@ -5,7 +5,7 @@ import { c, shadow } from '../theme'
 
 export default function Dashboard() {
   return (
-    <main style={{ flex: 1, padding: '24px 32px', maxWidth: 'calc(100vw - 220px)', overflowX: 'hidden' }}>
+    <main style={{ flex: 1, padding: '24px 32px', maxWidth: 'calc(100vw - 220px)', overflowX: 'hidden', background: '#fff' }}>
       {/* Top row: updated + user/notification */}
       <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: 10 }}>
         <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontSize: 12, color: c.muted }}>
@@ -37,7 +37,7 @@ export default function Dashboard() {
 
       {/* Title */}
       <h1 style={{ fontSize: 26, fontWeight: 800, color: c.ink, letterSpacing: -0.6, marginBottom: 22 }}>
-        제목(Title)
+        OOO님, 오늘의 성과를 확인해보세요.
       </h1>
 
       <StatsGrid />

@@ -95,7 +95,7 @@ export default function StatsGrid() {
           </p>
           <button
             style={improveBtn}
-            onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-1px)'; e.currentTarget.style.boxShadow = '0 6px 16px rgba(160,210,40,0.45)' }}
+            onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-1px)'; e.currentTarget.style.boxShadow = '0 6px 16px rgba(170,190,90,0.5)' }}
             onMouseLeave={e => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = improveBtn.boxShadow }}
           >
             개선하러 가기 <ArrowRight size={14} />
@@ -142,11 +142,11 @@ const improveBtn = {
   padding: '9px 16px',
   borderRadius: 10,
   border: 'none',
-  background: `linear-gradient(135deg, ${c.lime}, #C6F03C)`,
+  background: `linear-gradient(135deg, ${c.lime}, ${c.limeDark})`,
   color: c.primaryDark,
   fontSize: 13,
   fontWeight: 700,
   cursor: 'pointer',
-  boxShadow: '0 4px 12px rgba(160,210,40,0.38)',
+  boxShadow: '0 4px 12px rgba(170,190,90,0.4)',
   transition: 'transform 0.15s, box-shadow 0.15s',
 }

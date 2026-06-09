@@ -30,7 +30,7 @@ export default function Sidebar() {
     <aside style={{
       width: 220,
       minHeight: '100vh',
-      background: c.card,
+      background: c.bg,
       borderRight: `1px solid ${c.border}`,
       display: 'flex',
       flexDirection: 'column',
@@ -41,10 +41,27 @@ export default function Sidebar() {
       overflowY: 'auto',
     }}>
       {/* Logo */}
-      <div style={{ padding: '22px 18px 16px' }}>
-        <span style={{ display: 'inline-flex', alignItems: 'baseline', color: c.primary, letterSpacing: -0.5 }}>
-          <span style={{ fontWeight: 800, fontSize: 24 }}>AX</span>
-          <span style={{ fontWeight: 700, fontSize: 19 }}>ion</span>
+      <div style={{ padding: '22px 18px 16px', position: 'relative' }}>
+        {/* white glow */}
+        <div style={{
+          position: 'absolute',
+          left: 8,
+          top: 12,
+          width: 130,
+          height: 44,
+          background: 'radial-gradient(closest-side, rgba(255,255,255,0.95), rgba(255,255,255,0))',
+          filter: 'blur(6px)',
+          pointerEvents: 'none',
+        }} />
+        <span style={{
+          position: 'relative',
+          display: 'inline-flex',
+          alignItems: 'baseline',
+          letterSpacing: -0.5,
+          textShadow: '0 0 10px rgba(255,255,255,0.95), 0 0 18px rgba(255,255,255,0.8)',
+        }}>
+          <span style={{ fontWeight: 800, fontSize: 24, color: c.primary }}>AX</span>
+          <span style={{ fontWeight: 700, fontSize: 19, color: '#000' }}>ion</span>
         </span>
       </div>
 
@@ -72,7 +89,7 @@ export default function Sidebar() {
                 transition: 'background 0.15s',
                 marginBottom: 1,
               }}
-              onMouseEnter={e => { if (!active) e.currentTarget.style.background = c.bg }}
+              onMouseEnter={e => { if (!active) e.currentTarget.style.background = c.card }}
               onMouseLeave={e => { if (!active) e.currentTarget.style.background = 'transparent' }}
             >
               <Icon size={15} strokeWidth={active ? 2.2 : 1.8} />
@@ -102,7 +119,7 @@ export default function Sidebar() {
                       textAlign: 'left',
                       transition: 'background 0.15s, color 0.15s',
                     }}
-                    onMouseEnter={e => { e.currentTarget.style.background = c.bg; e.currentTarget.style.color = c.body }}
+                    onMouseEnter={e => { e.currentTarget.style.background = c.card; e.currentTarget.style.color = c.body }}
                     onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = c.muted }}
                   >
                     {child}
