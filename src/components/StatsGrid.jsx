@@ -15,7 +15,7 @@ function SplitBar({ greenPct }) {
       <div style={{
         width: `${greenPct}%`,
         background: c.green,
-        backgroundImage: 'repeating-linear-gradient(45deg, rgba(255,255,255,0.6) 0, rgba(255,255,255,0.6) 2px, transparent 2px, transparent 6px)',
+        backgroundImage: 'repeating-linear-gradient(45deg, rgba(255,255,255,0.4) 0, rgba(255,255,255,0.4) 1px, transparent 1px, transparent 4px)',
       }} />
       <div style={{ flex: 1, background: c.amber }} />
     </div>

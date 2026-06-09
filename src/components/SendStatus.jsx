@@ -62,7 +62,7 @@ export default function SendStatus() {
                 border: `1px solid ${isActive ? c.border : 'transparent'}`,
                 borderBottom: isActive ? `1px solid ${c.card}` : '1px solid transparent',
                 background: isActive ? c.card : 'transparent',
-                color: isActive ? c.primary : c.muted,
+                color: isActive ? c.ink : c.muted,
                 fontSize: 13,
                 fontWeight: isActive ? 700 : 500,
                 cursor: 'pointer',
