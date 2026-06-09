@@ -8,16 +8,16 @@ import FunnelPage from './components/analytics/FunnelPage'
 import ChurnPage from './components/analytics/ChurnPage'
 import CohortPage from './components/analytics/CohortPage'
 import SegmentPage from './components/analytics/SegmentPage'
+import OnsiteStatus from './components/OnsiteStatus'
+import OnsiteStats from './components/OnsiteStats'
+import MessageStatus from './components/MessageStatus'
+import MessageStats from './components/MessageStats'
+import Customers from './components/Customers'
 import { c } from './theme'
 
 const placeholderTitles = {
   'audience-create': '오디언스 생성',
   'audience-manage': '오디언스 관리',
-  'onsite-status': '온사이트 현황',
-  'onsite-stats': '온사이트 통계',
-  'message-status': '메시지 현황',
-  'message-stats': '메시지 통계',
-  'customers': '고객 목록',
   'settings': '설정',
 }
 
@@ -29,6 +29,11 @@ function renderRoute(route) {
     case 'analytics-churn': return <ChurnPage />
     case 'analytics-cohort': return <CohortPage />
     case 'analytics-segment': return <SegmentPage />
+    case 'onsite-status': return <OnsiteStatus />
+    case 'onsite-stats': return <OnsiteStats />
+    case 'message-status': return <MessageStatus />
+    case 'message-stats': return <MessageStats />
+    case 'customers': return <Customers />
     default: return <Placeholder title={placeholderTitles[route] || '페이지'} />
   }
 }
