@@ -8,7 +8,8 @@ export const c = {
 
   // data / chart
   green: '#0F6E51',
-  amber: '#B6F034', // 재방문 — 명도 높은 형광 연두
+  amber: '#DFFF32', // 재방문/재구매 — 명도 높은 형광 연두
+  lime: '#DFFF32',  // 밝은 연두 (CTA 버튼)
   track: '#EEF3F0',
 
   // text
